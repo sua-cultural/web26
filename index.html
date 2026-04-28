@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sua Corporación Cultural - Creación y formación artística para iluminar vidas">
+    <meta property="og:title" content="Sua Corporación Cultural">
+    <meta property="og:description" content="Creación y formación artística para iluminar vidas. Transformando comunidades a través del arte.">
+    <meta property="og:image" content="img/sol-icon200.png">
+    <meta property="og:url" content="https://suacultural.com">
     <title>Sua Cultural - Iluminando vidas a través del arte</title>
     <link rel="icon" type="image/png" href="img/sol-icon32.png">
     <style>
@@ -880,10 +884,35 @@
             border: 2px solid transparent;
         }
 
+        .social-links a img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
         .social-links a:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(255, 51, 51, 0.3);
             border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .social-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .contact-item a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
         }
 
         .footer-bottom {
@@ -1005,8 +1034,9 @@
             }
 
             .hero {
-                margin-top: 60px;
+                margin-top: 0;
                 padding: 2rem 3%;
+                padding-top: 70px;
             }
 
             .cta-button {
@@ -1029,7 +1059,12 @@
 
             .about-image,
             .sala-image {
-                height: 250px;
+                height: auto;
+                aspect-ratio: auto;
+            }
+
+            .sala-image {
+                aspect-ratio: 1 / 0.8;
             }
 
             .about-content {
@@ -1328,7 +1363,10 @@
                     </div>
                     <div class="contact-item">
                         <h3>📱 WhatsApp</h3>
-                        <p><a href="https://wa.me/573008643242" target="_blank">Envíanos un mensaje</a></p>
+                        <p><a href="https://wa.me/573008643242" target="_blank">
+                            <img src="img/whatsapp-logo.png" alt="WhatsApp" class="social-icon">
+                            Envíanos un mensaje
+                        </a></p>
                     </div>
                     <div class="contact-item">
                         <h3>📍 Ubicación</h3>
@@ -1337,9 +1375,15 @@
                     <div class="contact-item">
                         <h3>🌐 Redes Sociales</h3>
                         <div class="social-links contact-social">
-                            <a href="https://facebook.com/suaclubartes" title="Facebook" target="_blank">f</a>
-                            <a href="https://instagram.com/suaclubartes" title="Instagram" target="_blank">📷</a>
-                            <a href="https://youtube.com/@suacultural" title="YouTube" target="_blank">▶️</a>
+                            <a href="https://facebook.com/suaclubartes" title="Facebook" target="_blank">
+                                <img src="img/facebook-logo.png" alt="Facebook" class="social-icon">
+                            </a>
+                            <a href="https://instagram.com/suaclubartes" title="Instagram" target="_blank">
+                                <img src="img/instagram-logo.png" alt="Instagram" class="social-icon">
+                            </a>
+                            <a href="https://youtube.com/@suacultural" title="YouTube" target="_blank">
+                                <img src="img/youtube-logo.png" alt="YouTube" class="social-icon">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1385,20 +1429,30 @@
                     <li><a href="#proyectos">Proyectos</a></li>
                     <li><a href="#formacion">Formación</a></li>
                     <li><a href="#cineclub">Cineclubs</a></li>
+                    <li><a href="#sala-solar">Sala Solar</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Síguenos</h4>
                 <div class="social-links">
-                    <a href="https://facebook.com/suaclubartes" title="Facebook" target="_blank">f</a>
-                    <a href="https://instagram.com/suaclubartes" title="Instagram" target="_blank">📷</a>
-                    <a href="https://youtube.com/@suacultural" title="YouTube" target="_blank">▶️</a>
+                    <a href="https://facebook.com/suaclubartes" title="Facebook" target="_blank">
+                        <img src="img/facebook-logo.png" alt="Facebook" class="social-icon">
+                    </a>
+                    <a href="https://instagram.com/suaclubartes" title="Instagram" target="_blank">
+                        <img src="img/instagram-logo.png" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://youtube.com/@suacultural" title="YouTube" target="_blank">
+                        <img src="img/youtube-logo.png" alt="YouTube" class="social-icon">
+                    </a>
+                    <a href="https://wa.me/573008643242" title="WhatsApp" target="_blank">
+                        <img src="img/whatsapp-logo.png" alt="WhatsApp" class="social-icon">
+                    </a>
                 </div>
                 <p style="margin-top: 1.5rem; font-size: 0.9rem;">Email: suaclubartes@gmail.com</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Sua Corporación Cultural. Todos los derechos reservados. El Socorro, Santander, Colombia.</p>
+            <p>&copy; 2025 Sua Corporación Cultural. Todos los derechos reservados. Santander, Colombia.</p>
         </div>
     </footer>
 
