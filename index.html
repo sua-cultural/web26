@@ -1,1531 +1,256 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sua Corporación Cultural - Creación y formación artística para iluminar vidas">
-    <meta property="og:title" content="Sua Corporación Cultural">
-    <meta property="og:description" content="Creación y formación artística para iluminar vidas. Transformando comunidades a través del arte.">
-    <meta property="og:image" content="https://sua-cultural.github.io/img/ogimgsua.jpg">
-    <meta property="og:url" content="https://sua-cultural.github.io">
-    <title>Sua Cultural - Iluminando vidas a través del arte</title>
-    <link rel="icon" type="image/png" href="img/sol-icon32.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #1a1a1a;
-            --secondary: #FF3333;
-            --accent: #FFD700;
-            --light: #f5f1ed;
-            --text: #2c2c2c;
-            --text-light: #666;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ===== HEADER STICKY ===== */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(26, 26, 26, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            max-width: 180px;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo img {
-            height: 45px;
-            width: auto;
-        }
-
-        /* Navegación */
-        nav {
-            display: flex;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 0;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
-
-        .nav-links a {
-            display: block;
-            padding: 1rem 1.5rem;
-            color: var(--light);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-            background: rgba(255, 215, 0, 0.05);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: var(--accent);
-        }
-
-        /* Botón hamburguesa */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            background: none;
-            border: none;
-            padding: 0;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--light);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            margin-top: 80px;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, #2c2c2c 100%);
-            color: var(--light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem 5%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(30px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            text-align: center;
-            animation: slideUp 0.8s ease-out;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hero-content > div {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero-content img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 8vw, 3.5rem);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            color: var(--accent);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .hero .tagline {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: var(--secondary);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            border: 2px solid var(--secondary);
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 51, 51, 0.2);
-        }
-
-        /* ===== SECCIONES GENERALES ===== */
-        section {
-            padding: 5rem 5%;
-            min-height: auto;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 6vw, 2.8rem);
-            margin-bottom: 3rem;
-            color: var(--primary);
-            text-align: center;
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-        }
-
-        /* ===== SOBRE NOSOTROS ===== */
-        .about {
-            background: white;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        .about-image {
-           /* background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);*/
-            height: 400px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .about-image img {
-            /*width: 100%;*/
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* ===== PROYECTOS ===== */
-        .projects {
-            background: var(--light);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .project-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-content h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-        }
-
-        .project-content p {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .project-type {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: rgba(255, 51, 51, 0.1);
-            color: var(--secondary);
-            font-size: 0.8rem;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .project-link {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .project-link:hover {
-            gap: 0.5rem;
-        }
-
-        /* ===== FORMACIÓN ARTÍSTICA ===== */
-        .formation {
-            background: white;
-        }
-
-        .formation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .formation-card {
-            background: var(--light);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .formation-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .formation-image {
-            height: 180px;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            overflow: hidden;
-        }
-
-        .formation-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .formation-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .formation-content h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-        }
-
-        .formation-content p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        .formation-link {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        /* ===== CINECLUBS ===== */
-        .cineclubs {
-            background: var(--light);
-        }
-
-        .cineclubs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .cineclub-item {
-            background: white;
-            border-radius: 8px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .cineclub-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .cineclub-item h3 {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .cineclub-item p {
-            color: var(--text-light);
-            margin-bottom: 0.8rem;
-            line-height: 1.7;
-        }
-
-        .cineclub-info {
-            padding: 1.5rem;
-            background: white;
-            border-radius: 4px;
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
-            color: var(--text);
-            border-left: 4px solid var(--secondary);
-        }
-
-        .cineclub-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .cineclub-btn {
-            padding: 0.8rem 1.5rem;
-            background: var(--secondary);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--secondary);
-            display: inline-block;
-        }
-
-        .cineclub-btn:hover {
-            background: transparent;
-            color: var(--secondary);
-        }
-        /* ===== PRODUCCIÓN AUDIOVISUAL ===== */
-        .audiovisual {
-            background: white;
-        }
-
-        .audiovisual-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .film-card {
-            background: var(--light);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .film-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .film-poster {
-            height: 200px;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            overflow: hidden;
-        }
-
-        .film-poster img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .film-info {
-            padding: 1.5rem;
-        }
-
-        .film-info h3 {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .film-info p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .film-link {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .film-link:hover {
-            color: var(--accent);
-        }
-
-        /* ===== SALA SOLAR ===== */
-        .sala-solar {
-            background: var(--light);
-        }
-
-        .sala-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .sala-image {
-            height: 600px;
-            /*background: linear-gradient(135deg, #FF3333 0%, #FFD700 100%);*/
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .sala-image img {
-            /*width: 100%;*/
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .sala-text h3 {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .sala-text p {
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        .sala-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .feature {
-            padding: 1.5rem;
-            background: white;
-            border-radius: 8px;
-            border-left: 4px solid var(--secondary);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .feature h4 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .feature p {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin: 0;
-        }
-
-        /* ===== CONTACTO ===== */
-        .contact {
-            background: white;
-        }
-
-        .contact-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .contact-intro {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .contact-intro p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .contact-item {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .contact-item h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .contact-item p {
-            color: var(--text-light);
-        }
-
-        .contact-item a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: var(--accent);
-        }
-
-        .contact-social {
-            justify-content: center;
-        }
-
-        .contact-form {
-            background: var(--light);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(255, 51, 51, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 51, 51, 0.2);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--primary);
-            color: var(--light);
-            padding: 4rem 5%;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-        }
-
-        .footer-section h4 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            color: white;
-            font-weight: bold;
-            font-size: 1.3rem;
-            text-decoration: none;
-            border: 2px solid transparent;
-        }
-
-        .social-links a img {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 51, 51, 0.3);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
-
-        .contact-item a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item a img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            padding-top: 2rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            header {
-                padding: 0.8rem 4%;
-            }
-
-            .nav-links a {
-                padding: 0.8rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .logo img {
-                height: 35px;
-            }
-
-            .hero {
-                margin-top: 70px;
-                padding: 2rem 4%;
-            }
-
-            .section-title {
-                margin-bottom: 2rem;
-            }
-
-            .about-content,
-            .sala-content {
-                grid-template-columns: 1fr;
-            }
-
-            .sala-features {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid,
-            .formation-grid,
-            .audiovisual-grid,
-            .cineclubs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            section {
-                padding: 3rem 4%;
-            }
-
-            .contact-form {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            header {
-                padding: 0.7rem 3%;
-                position: fixed;
-                top: 0;
-                width: 100%;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(26, 26, 26, 0.98);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-                width: 100%;
-            }
-
-            nav.active {
-                max-height: 500px;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            }
-
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .nav-links li {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .nav-links a {
-                padding: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .nav-links a::after {
-                display: none;
-            }
-
-            .logo {
-                max-width: 120px;
-            }
-
-            .logo img {
-                height: 35px;
-            }
-
-            .hero {
-                margin-top: 0;
-                padding: 2rem 3%;
-                padding-top: 70px;
-            }
-
-            .cta-button {
-                padding: 0.9rem 2rem;
-                font-size: 0.9rem;
-            }
-
-            section {
-                padding: 2rem 3%;
-            }
-
-            .section-title {
-                font-size: 1.4rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .contact-form {
-                padding: 1rem;
-            }
-
-            .about-image,
-            .sala-image {
-                height: auto;
-                aspect-ratio: auto;
-            }
-
-            .sala-image {
-                aspect-ratio: 1 / 0.8;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .cineclub-buttons {
-                flex-direction: column;
-            }
-
-            .cineclub-btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sua Corporación Cultural - Creación y formación artística para iluminar vidas">
+  <title>Sua Cultural - Iluminando vidas a través del arte</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <a href="#inicio" class="logo">
-            <img src="img/sol-icon100.png">
-        </a>
 
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+  <!-- Timeline flotante en la parte superior -->
+  <div class="timeline-header">
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+      <div class="timeline-points">
+        <div class="timeline-point active" data-index="0" title="Inicio + Sua"></div>
+        <div class="timeline-point" data-index="1" title="Agenda Cultural"></div>
+        <div class="timeline-point" data-index="2" title="Creación"></div>
+        <div class="timeline-point" data-index="3" title="Formación"></div>
+        <div class="timeline-point" data-index="4" title="Comunidad"></div>
+      </div>
+    </div>
+  </div>
 
-        <nav id="nav-menu">
-            <ul class="nav-links">
-                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                <li><a href="#sobre-sua" class="nav-link">Sobre SUA</a></li>
-                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
-                <li><a href="#formacion" class="nav-link">Formación</a></li>
-                <li><a href="#cineclub" class="nav-link">Cineclubes</a></li>
-                <li><a href="#sala-solar" class="nav-link">Sala Solar</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Sol botón (superior derecho) -->
+  <button class="sun-button" id="sunButton" aria-label="Menú">
+    <img src="assets/images/sol-icon100.png" alt="Menú Sua" class="sun-icon">
+  </button>
 
-    <!-- HERO -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <div style="text-align: center">
-                <img src="img/sol-icon200.png">
-            </div>
-            <h1>Sua Cultural</h1>
-            <p class="subtitle">Iluminando vidas a través del arte</p>
-            <p class="tagline">Creación y formación artística para transformar comunidades, generar pensamiento crítico y sembrar nuevas realidades.</p>
-            <a href="#proyectos" class="cta-button">Conoce Nuestros Proyectos</a>
+  <!-- Submenú -->
+  <div class="submenu" id="submenu">
+    <a class="submenu-item" href="#inicio">Inicio</a>
+    <a class="submenu-item" href="#agenda">Agenda Cultural</a>
+    <a class="submenu-item" href="#creacion">Creación</a>
+    <a class="submenu-item" href="#formacion">Formación</a>
+    <a class="submenu-item" href="#comunidad">Comunidad</a>
+    <br>
+    <a class="submenu-item" href="http://instagram.com/suaclubartes" target="_blank">@suaclubartes</a>
+</div>  
+  </div>
+
+  <!-- Overlay para cerrar menú -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Scroll container con las 5 secciones -->
+  <div class="scroll-container" id="scrollContainer">
+    
+    <!-- Sección 1: Inicio + Sobre Sua -->
+    <section class="scroll-section section1" id="inicio">
+      <div class="section-content">
+           <div class="section-inner">
+          <img src="assets/images/sol-icon200.png" alt="Logo Sua" class="section-logo">
+          <h1>Sua Cultural</h1>
+          <p class="tagline">Iluminando vidas a través del arte</p>
+          <p class="description">Creación y formación artística para transformar comunidades, generar pensamiento crítico y sembrar nuevas realidades.</p>
+          <a href="#creacion" class="cta-button">Conoce Nuestros Proyectos</a>
         </div>
+      </div>
     </section>
 
-    <!-- SOBRE NOSOTROS -->
-    <section id="sobre-sua" class="about">
-        <h2 class="section-title">Sobre Sua</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Nuestra Misión</h3>
-                <p>Somos una corporación cultural dedicada a la <strong>creación y formación artística para iluminar vidas</strong>. Nuestro propósito es <strong>generar transformación social a través del arte</strong>, creando espacios donde la comunidad piensa, reflexiona y se transforma.</p>
-                <p>Operamos bajo diferentes nombres y formatos según el proyecto, pero
-                    siempre con la misma esencia: <strong>facilitar proyectos artísticos para que la comunidad cree y geste su transformación positiva.</strong>.</p>
-                <p>Ubicados en El Socorro y San Gil, Santander, creemos que el arte es el catalizador más poderoso para iluminar territorios, visibilizar historias y crear nuevas posibilidades de existencia.</p>
+    <!-- Sección 2: Agenda Cultural (Sala Solar + Cineclubes) -->
+    <section class="scroll-section section2" id="agenda">
+      <!--<div class="section-content">
+        <div class="section-inner">
+          <h2>Agenda Cultural</h2>
+          
+          <div class="agenda-grid">
+            <div class="agenda-card">
+              <h3>🎬 Sua Cineclub</h3>
+              <p>Espacio de encuentro comunitario donde vemos películas y dialogamos.</p>
+              <div class="info">
+                <p><strong>📅 Viernes, Sábado y Domingo</strong></p>
+                <p><strong>⏰ 7:00 PM</strong></p>
+                <p><strong>📍 Sala Solar - El Socorro</strong></p>
+                <p><strong>💰 Entrada Libre</strong></p>
+              </div>
+              <a href="https://suacultural.github.io/sua-cineclub.html" class="link">Ver los 16 Ciclos →</a>
             </div>
-            <div class="about-image">
-                <!-- Imagen sua logo -->
-                <img src="img/Sua logo vert.png" alt="sua logo ver">
+
+            <div class="agenda-card">
+              <h3>🎭 Chibaná Cineclub</h3>
+              <p>Colectivo aliado dedicado al séptimo arte. Cinefilia itinerante en San Gil.</p>
+              <div class="info">
+                <p><strong>📍 San Gil, Santander</strong></p>
+                <p>Casa del Libro Total, Casona Don Juan, Casa Guane Cultural...</p>
+              </div>
+              <a href="https://instagram.com/chibanacineclub" class="link">Visitar Instagram →</a>
             </div>
+
+            <div class="agenda-card">
+              <h3>🏛️ Sala Solar</h3>
+              <p>Espacio cultural dinámico y transformador. Corazón físico de Sua.</p>
+              <div class="info">
+                <p><strong>📍 Cll14 #15-45, El Socorro</strong></p>
+                <p>Viernes, sábados y domingos</p>
+                <p>Flexible y adaptable a diferentes eventos</p>
+              </div>
+              <a href="#" class="link">Más sobre la Sala →</a>
+            </div>
+          </div>
         </div>
+      </div>-->
     </section>
 
-    <!-- PROYECTOS -->
-    <section id="proyectos" class="projects">
-        <h2 class="section-title">Nuestros Proyectos</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="img/siembra-poetica.jpg" alt="Siembra Poética">
-                </div>
-                <div class="project-content">
-                    <h3>Siembra Poética</h3>
-                    <p>Laboratorio de creación artística que investiga la poesía como herramienta de transformación. La comunidad siembra reflexiones y cosecha frutos artísticos.</p>
-                    <span class="project-type">Investigación Artística</span>
-                    <a href="siembra-poetica.html" class="project-link">Ver más →</a>
-                </div>
-            </div>
+    <!-- Sección 3: Creación (Proyectos) -->
+    <section class="scroll-section section3" id="creacion">
+      <!--<div class="section-content">
+        <div class="section-inner">
+          <h2>Creación</h2>
+          <p class="section-subtitle">Nuestros Proyectos Artísticos</p>
 
+          <div class="projects-grid">
             <div class="project-card">
-                <div class="project-image">
-                    <img src="img/cine-conciencia.jpg" alt="Cine Conciencia">
-                </div>
-                <div class="project-content">
-                    <h3>Cine Conciencia</h3>
-                    <p>Proyecto de producción audiovisual apoyado por Mincultura. Facilitamos cortometrajes donde la comunidad cuenta historias y genera conciencia colectiva.</p>
-                    <span class="project-type">Producción Audiovisual</span>
-                    <a href="cine-conciencia.html" class="project-link">Ver más →</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="img/comun-experimento.jpg" alt="Común Experimento">
-                </div>
-                <div class="project-content">
-                    <h3>Común Experimento</h3>
-                    <p>Espacio de experimentación corporal y danza donde exploramos el movimiento como lenguaje de transformación. Laboratorio abierto para crear desde el cuerpo.</p>
-                    <span class="project-type">Artes Escénicas</span>
-                    <a href="comun-experimento.html" class="project-link">Ver más →</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="img/resiste-como-mujer.jpg" alt="Resiste como Mujer">
-                </div>
-                <div class="project-content">
-                    <h3>Resiste como Mujer</h3>
-                    <p>Laboratorio femenino dedicado a fortalecer voces de mujeres a través del arte. Creamos espacios seguros para compartir historias y generar resistencia artística.</p>
-                    <span class="project-type">Laboratorio Femenino</span>
-                    <a href="resiste-como-mujer.html" class="project-link">Ver más →</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="img/el-poder-del-campo.jpg" alt="El Poder del Campo">
-                </div>
-                <div class="project-content">
-                    <h3>El Poder del Campo</h3>
-                    <p>Proyecto dedicado a visibilizar y celebrar el trabajo, la sabiduría y la resistencia de quienes viven en territorios rurales. Arte desde y para el campo.</p>
-                    <span class="project-type">Investigación Social</span>
-                    <a href="el-poder-del-campo.html" class="project-link">Ver más →</a>
-                </div>
+              <img src="assets/images/siembra-poetica.jpg" alt="Siembra Poética">
+              <h3>Siembra Poética</h3>
+              <p>Laboratorio de creación artística que investiga la poesía como herramienta de transformación.</p>
+              <a href="https://suacultural.github.io/siembra-poetica.html" class="link">Ver más →</a>
             </div>
 
             <div class="project-card">
-                <div class="project-image">
-                    <img src="img/Reflejo-web.jpg" alt="Producción Audiovisual">
-                </div>
-                <div class="project-content">
-                    <h3>Producción Audiovisual</h3>
-                    <p>Colección de cortometrajes que exploran historias de transformación, conflicto y resiliencia. Documentos vivos de nuestra comunidad creativa.</p>
-                    <span class="project-type">Cine y Video</span>
-                    <a href="produccion-audiovisual.html" class="project-link">Ver más →</a>
-                </div>
+              <img src="assets/images/cine-conciencia.jpg" alt="Cine Conciencia">
+              <h3>Cine Conciencia</h3>
+              <p>Proyecto de producción audiovisual. Facilitamos cortometrajes donde la comunidad cuenta historias.</p>
+              <a href="https://suacultural.github.io/cine-conciencia.html" class="link">Ver más →</a>
             </div>
+
+            <div class="project-card">
+              <img src="assets/images/comun-experimento.jpg" alt="Común Experimento">
+              <h3>Común Experimento</h3>
+              <p>Espacio de experimentación corporal y danza. Laboratorio abierto para crear desde el cuerpo.</p>
+              <a href="https://suacultural.github.io/comun-experimento.html" class="link">Ver más →</a>
+            </div>
+
+            <div class="project-card">
+              <img src="assets/images/resiste-como-mujer.jpg" alt="Resiste como Mujer">
+              <h3>Resiste como Mujer</h3>
+              <p>Laboratorio femenino dedicado a fortalecer voces de mujeres a través del arte.</p>
+              <a href="https://suacultural.github.io/resiste-como-mujer.html" class="link">Ver más →</a>
+            </div>
+
+            <div class="project-card">
+              <img src="assets/images/el-poder-del-campo.jpg" alt="El Poder del Campo">
+              <h3>El Poder del Campo</h3>
+              <p>Proyecto dedicado a visibilizar y celebrar la sabiduría y resistencia del trabajo rural.</p>
+              <a href="https://suacultural.github.io/el-poder-del-campo.html" class="link">Ver más →</a>
+            </div>
+
+            <div class="project-card">
+              <img src="assets/images/Reflejo-web.jpg" alt="Producción Audiovisual">
+              <h3>Producción Audiovisual</h3>
+              <p>Colección de cortometrajes que exploran historias de transformación, conflicto y resiliencia.</p>
+              <a href="https://suacultural.github.io/produccion-audiovisual.html" class="link">Ver más →</a>
+            </div>
+          </div>
         </div>
+      </div>-->
     </section>
 
-    <!-- FORMACIÓN ARTÍSTICA -->
-    <section id="formacion" class="formation">
-        <h2 class="section-title">Formación Artística</h2>
-        <div class="formation-grid">
-            <div class="formation-card">
-                <div class="formation-image">
-                    <img src="img/siembra-poetica.jpg" alt="Siembra Poética 1">
-                </div>
-                <div class="formation-content">
-                    <h3>Siembra Poética 1</h3>
-                    <p>Primer ciclo de laboratorios de creación poética donde la comunidad investiga y experimenta con el lenguaje como acto de transformación.</p>
-                    <a href="siembra-poetica.html" class="formation-link">Explorar →</a>
-                </div>
+    <!-- Sección 4: Formación -->
+    <section class="scroll-section section4" id="formacion">
+    <!--  <div class="section-content">
+        <div class="section-inner">
+          <h2>Formación Artística</h2>
+          <p class="section-subtitle">Laboratorios y Encuentros de Aprendizaje</p>
+
+          <div class="courses-grid">
+            <div class="course-card">
+              <img src="assets/images/siembra-poetica.jpg" alt="Siembra Poética 1">
+              <h3>Siembra Poética 1</h3>
+              <p>Primer ciclo de laboratorios de creación poética donde la comunidad investiga y experimenta.</p>
+              <a href="https://suacultural.github.io/siembra-poetica.html" class="link">Explorar →</a>
             </div>
 
-            <div class="formation-card">
-                <div class="formation-image">
-                    <img src="img/siembra-poetica-2.jpg" alt="Siembra Poética 2">
-                </div>
-                <div class="formation-content">
-                    <h3>Siembra Poética 2</h3>
-                    <p>Segundo ciclo dedicado a la "Paz con la Naturaleza". Exploramos la relación entre escritura, naturaleza y transformación territorial.</p>
-                    <a href="siembra-poetica-2.html" class="formation-link">Explorar →</a>
-                </div>
+            <div class="course-card">
+              <img src="assets/images/siembra-poetica-2.jpg" alt="Siembra Poética 2">
+              <h3>Siembra Poética 2</h3>
+              <p>Segundo ciclo dedicado a la "Paz con la Naturaleza". Exploración entre escritura y naturaleza.</p>
+              <a href="https://suacultural.github.io/siembra-poetica-2.html" class="link">Explorar →</a>
             </div>
 
-            <div class="formation-card">
-                <div class="formation-image">
-                    <img src="img/el-poder-del-campo.jpg" alt="El Poder del Campo">
-                </div>
-                <div class="formation-content">
-                    <h3>El Poder del Campo</h3>
-                    <p>Laboratorios de documental, fotografía y video 360° en territorios rurales. Formación para visibilizar saberes campesinos.</p>
-                    <a href="el-poder-del-campo.html" class="formation-link">Explorar →</a>
-                </div>
+            <div class="course-card">
+              <img src="assets/images/el-poder-del-campo.jpg" alt="El Poder del Campo">
+              <h3>El Poder del Campo</h3>
+              <p>Laboratorios de documental, fotografía y video 360° en territorios rurales.</p>
+              <a href="https://suacultural.github.io/el-poder-del-campo.html" class="link">Explorar →</a>
             </div>
 
-            <div class="formation-card">
-                <div class="formation-image">
-                    <img src="img/cine-conciencia.jpg" alt="Cine Conciencia">
-                </div>
-                <div class="formation-content">
-                    <h3>Cine Conciencia</h3>
-                    <p>Taller audiovisual donde aprendemos a contar historias que generan conciencia. Producción de cortometrajes con dispositivos móviles.</p>
-                    <a href="cine-conciencia.html" class="formation-link">Explorar →</a>
-                </div>
+            <div class="course-card">
+              <img src="assets/images/cine-conciencia.jpg" alt="Cine Conciencia">
+              <h3>Cine Conciencia</h3>
+              <p>Taller audiovisual donde aprendemos a contar historias que generan conciencia colectiva.</p>
+              <a href="https://suacultural.github.io/cine-conciencia.html" class="link">Explorar →</a>
             </div>
 
-            <div class="formation-card">
-                <div class="formation-image">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect fill='%23FF3333' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' font-size='60' text-anchor='middle' dominant-baseline='middle'%3E✨%3C/text%3E%3C/svg%3E" alt="Microtaller">
-                </div>
-                <div class="formation-content">
-                    <h3>Microtaller</h3>
-                    <p>Encuentros intensivos de exploración artística. Espacios breves pero profundos para experimentar nuevas formas de creación.</p>
-                    <a href="https://www.youtube.com/@suacultural" class="formation-link" target="_blank">Ver en YouTube →</a>
-                </div>
+            <div class="course-card">
+              <img src="assets/images/microtaller.jpg" alt="Microtaller">
+              <h3>Microtaller</h3>
+              <p>Encuentros intensivos de exploración artística. Espacios breves pero profundos para experimentar.</p>
+              <a href="https://www.youtube.com/@suacultural" class="link">Ver en YouTube →</a>
             </div>
+          </div>
         </div>
+      </div>-->
     </section>
 
-    <!-- CINECLUBS -->
-    <section id="cineclub" class="cineclubs">
-        <h2 class="section-title">Cineclubes</h2>
-        <div class="cineclubs-grid">
-            <div class="cineclub-item">
-                <h3>🎬 Sua Cineclub</h3>
-                <p>Espacio de encuentro comunitario donde vemos películas y dialogamos. Admiración colectiva, reflexión compartida y construcción de sentidos alrededor del cine.</p>
-                <div class="cineclub-info">
-                    <strong>📅 Viernes, Sábado y Domingo</strong><br>
-                    <strong>⏰ 7:00 PM</strong><br>
-                    <strong>📍 Sala Solar - Cll14 #15-45, El Socorro</strong><br>
-                    <strong>💰 Entrada Libre</strong>
-                </div>
-                <div class="cineclub-buttons">
-                    <a href="sua-cineclub.html" class="cineclub-btn">Ver los 16 Ciclos</a>
-                </div>
+    <!-- Sección 5: Comunidad (Contacto) -->
+    <section class="scroll-section section5" id="comunidad">
+     <!-- <div class="section-content">
+        <div class="section-inner">
+          <h2>Comunidad</h2>
+          <p class="section-subtitle">Contacta con Nosotros</p>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>📧 Email</h3>
+              <p><a href="mailto:suaclubartes@gmail.com">suaclubartes@gmail.com</a></p>
             </div>
 
-            <div class="cineclub-item">
-                <h3>🎭 Chibaná Cineclub</h3>
-                <p>Colectivo aliado de Sua dedicado al séptimo arte. Iniciativa para amantes del cine en San Gil. ¡Mire más allá!</p>
-                <div class="cineclub-info">
-                    <strong>📍 San Gil, Santander</strong><br>
-                    <strong>Cinefilia itinerante</strong> (Casa del Libro Total, Casona Don Juan, Casa Guane Cultural...)<br>
-                    <strong>Prográmate</strong>
-                </div>
-                <div class="cineclub-buttons">
-                    <a href="https://instagram.com/chibanacineclub" class="cineclub-btn" target="_blank">Visitar Instagram</a>
-                </div>
+            <div class="contact-card">
+              <h3>📱 WhatsApp</h3>
+              <p><a href="https://wa.me/573008643242" target="_blank">+57 300 8643242</a></p>
             </div>
+
+            <div class="contact-card">
+              <h3>📍 Ubicación</h3>
+              <p>El Socorro & San Gil<br>Santander, Colombia</p>
+            </div>
+          </div>
+
+          <div class="social-section">
+            <h3>Síguenos en Redes</h3>
+            <div class="social-links">
+              <a href="https://facebook.com/suaclubartes" target="_blank" class="social-link">Facebook</a>
+              <a href="https://instagram.com/suaclubartes" target="_blank" class="social-link">Instagram</a>
+              <a href="https://youtube.com/@suacultural" target="_blank" class="social-link">YouTube</a>
+            </div>
+          </div>
+
+          <div class="cta-section">
+            <h3>¿Quieres Colaborar?</h3>
+            <p>Nos encantaría escucharte y explorar formas de trabajar juntos.</p>
+            <a href="https://wa.me/573008643242" class="cta-button">Envía un Mensaje</a>
+          </div>
         </div>
+      </div>-->
     </section>
 
-    <!-- SALA SOLAR -->
-    <section id="sala-solar" class="sala-solar">
-        <h2 class="section-title">Sala Solar</h2>
-        <div class="sala-content">
-            <div class="sala-image">
-                <img src="img/salasolar-foto-vert.jpeg" alt="Sala Solar">
-            </div>
-            <div class="sala-text">
-                <h3>Nuestro Espacio de Encuentro</h3>
-                <p>La Sala Solar es un espacio cultural dinámico y transformador ubicado en El Socorro. No es estático: se reinventa según cada actividad, cada encuentro, cada proyecto.</p>
-                <p>Es el corazón físico de Sua, donde caben talleres, laboratorios de creación, encuentros de diálogo, exposiciones, proyecciones de cine y cualquier acción artística que la comunidad necesite hacer.</p>
-                <p>Con muros de piedra, luz natural, y mobiliario orgánico, la Sala Solar es tanto hogar como laboratorio, tanto refugio como espacio de provocación creativa.</p>
-                
-                <div class="sala-features">
-                    <div class="feature">
-                        <h4>📅 Funcionamiento</h4>
-                        <p>Viernes, sábados y domingos (expandiendo horarios próximamente)</p>
-                    </div>
-                    <div class="feature">
-                        <h4>📏 Capacidad</h4>
-                        <p>Flexible, adaptable a diferentes tipos de eventos</p>
-                    </div>
-                    <div class="feature">
-                        <h4>🔓 Acceso</h4>
-                        <p>Abierta a la comunidad para actividades propias</p>
-                    </div>
-                    <div class="feature">
-                        <h4>💫 Filosofía</h4>
-                        <p>Espacio vivo, transformador, comunitario</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  </div>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="contact">
-        <h2 class="section-title">Contacto</h2>
-        <div class="contact-content">
-            <div>
-                <div class="contact-intro">
-                    <p>¿Quieres colaborar, participar en algún proyecto o tienes preguntas? Nos encantaría escucharte.</p>
-                </div>
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>📧 Email</h3>
-                        <p><a href="mailto:suaclubartes@gmail.com">suaclubartes@gmail.com</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>📱 WhatsApp</h3>
-                        <p><a href="https://wa.me/573008643242" target="_blank">
-                            <img src="img/whatsapp-logo.png" alt="WhatsApp" class="social-icon">
-                            Envíanos un mensaje
-                        </a></p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>📍 Ubicación</h3>
-                        <p>El Socorro & San Gil, Santander, Colombia</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>🌐 Redes Sociales</h3>
-                        <div class="social-links contact-social">
-                            <a href="https://facebook.com/suaclubartes" title="Facebook" target="_blank">
-                                <img src="img/facebook-logo.png" alt="Facebook" class="social-icon">
-                            </a>
-                            <a href="https://instagram.com/suaclubartes" title="Instagram" target="_blank">
-                                <img src="img/instagram-logo.png" alt="Instagram" class="social-icon">
-                            </a>
-                            <a href="https://youtube.com/@suacultural" title="YouTube" target="_blank">
-                                <img src="img/youtube-logo.png" alt="YouTube" class="social-icon">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h3 style="margin-bottom: 2rem; color: var(--primary);">Envíanos un mensaje</h3>
-                <form onsubmit="handleFormSubmit(event)">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="asunto">Asunto</label>
-                        <input type="text" id="asunto" name="asunto" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Enviar por WhatsApp</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Sua Corporación Cultural</h4>
-                <p>Creación y formación artística para iluminar vidas. Transformando comunidades a través del arte en El Socorro y San Gil, Santander.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#sobre-sua">Sobre SUA</a></li>
-                    <li><a href="#proyectos">Proyectos</a></li>
-                    <li><a href="#formacion">Formación</a></li>
-                    <li><a href="#sala-solar">Sala Solar</a></li>
-                    <li><a href="#cineclub">Cineclubes</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Síguenos</h4>
-                <div class="social-links">
-                    <a href="https://facebook.com/suaclubartes" title="Facebook" target="_blank">
-                        <img src="img/facebook-logo.png" alt="Facebook" class="social-icon">
-                    </a>
-                    <a href="https://instagram.com/suaclubartes" title="Instagram" target="_blank">
-                        <img src="img/instagram-logo.png" alt="Instagram" class="social-icon">
-                    </a>
-                    <a href="https://youtube.com/@suacultural" title="YouTube" target="_blank">
-                        <img src="img/youtube-logo.png" alt="YouTube" class="social-icon">
-                    </a>
-                    <a href="https://wa.me/573008643242" title="WhatsApp" target="_blank">
-                        <img src="img/whatsapp-logo.png" alt="WhatsApp" class="social-icon">
-                    </a>
-                </div>
-                <p style="margin-top: 1.5rem; font-size: 0.9rem;">Email: suaclubartes@gmail.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Sua Corporación Cultural. Todos los derechos reservados. Santander, Colombia.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Menú hamburguesa toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Cerrar menú al hacer click en un link
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Navegación activa
-        const sections = document.querySelectorAll('section');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Scroll suave
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').slice(1);
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Formulario de contacto - Redirige a WhatsApp
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            const nombre = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            const asunto = document.getElementById('asunto').value;
-            const mensaje = document.getElementById('mensaje').value;
-            
-            const textoCompleto = `Hola, soy ${nombre}\n\nEmail: ${email}\nAsunto: ${asunto}\n\nMensaje:\n${mensaje}`;
-            const numeroWhatsApp = '573008643242';
-            const enlaceWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoCompleto)}`;
-            
-            window.open(enlaceWhatsApp, '_blank');
-            event.target.reset();
-        }
-    </script>
 </body>
 </html>
