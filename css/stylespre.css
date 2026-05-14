@@ -92,44 +92,29 @@ body {
 }
 
 .timeline-point.active {
-  background: #fa3627;
-  border-color: #fa3627;
+  background: var(--color-text);
+  border-color: var(--color-text);
   width: 20px;
   height: 20px;
-  box-shadow: 0 0 0 6px rgba(250, 54, 39, 0.15);
+  box-shadow: 0 0 0 4px rgba(51, 51, 51, 0);
 }
 
-/* Tooltip */
-.section-label {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(51, 51, 51, 0.85);
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(6px);
-  z-index: 10;
-}
-
-/* Tooltip visible en hover */
-.timeline-point:hover .section-label {
-  opacity: 1;
-}
-
-/* Tooltip PERMANENTE en punto activo - opacidad 0.6 */
+.timeline-point:hover .section-label,
 .timeline-point.active .section-label {
   opacity: 1;
-  background: rgba(250, 54, 39, 0.6);
-  color: white;
-  font-weight: 700;
+}
+
+/* label del timeline */
+.section-label {
+    position: absolute;
+    bottom: 36px;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+    white-space:  nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
 }
 /* ============================================
    SOL BOTÓN (SUPERIOR DERECHA)
@@ -654,21 +639,8 @@ body {
   .timeline-point.active {
     width: 14px;
     height: 14px;
-    background: #fa3627;
-    border-color: #fa3627;
-    box-shadow: 0 0 0 4px rgba(250, 54, 39, 0.15);
   }
-
-  .section-label {
-    font-size: 10px;
-    padding: 6px 10px;
-    bottom: 18px;
-  }
-
-  .timeline-point.active .section-label {
-    opacity: 1;
-    background: rgba(250, 54, 39, 0.6);
-  }
+  
 
   .sun-button {
     top: 12px;
