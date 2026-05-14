@@ -152,49 +152,12 @@ body {
   transition: transform var(--transition);
 }
 
-/* Contenedor para el anillo */
-.sun-button::before {
-  content: '';
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  border: 2px solid rgba(250, 54, 39, 0.3);
-  border-radius: 50%;
-  animation: expandRing 2s ease-out infinite;
-}
-
 .sun-button:hover {
   transform: scale(1.1) rotate(15deg);
 }
 
-.sun-button:hover::before {
-  animation: expandRingFast 0.8s ease-out infinite;
-}
-
 .sun-button:active {
   transform: scale(0.95);
-}
-
-@keyframes expandRing {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-}
-
-@keyframes expandRingFast {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
 }
 
 .sun-icon {
@@ -202,7 +165,7 @@ body {
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-/*  animation: float 3s ease-in-out infinite;*/
+  animation: float 3s ease-in-out infinite;
 }
 
 /* ============================================
