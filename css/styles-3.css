@@ -1,5 +1,5 @@
 /* ============================================
-   MOBILE FIRST - RESET Y VARIABLES
+   RESET Y VARIABLES
    ============================================ */
 
 * {
@@ -29,12 +29,13 @@ body {
 }
 
 /* ============================================
-   TIMELINE - MOBILE FIRST (ABAJO)
+   TIMELINE FLOTANTE (SUPERIOR)
    ============================================ */
 
 .timeline-header {
   position: fixed;
   bottom: 24px;
+  top: auto;
   left: 50%;
   transform: translateX(-50%);
   z-index: 300;
@@ -42,11 +43,10 @@ body {
   align-items: center;
   gap: 0;
   background: rgba(255, 255, 255, 0.95);
-  padding: 8px 12px;
+  padding: 12px 20px;
   border-radius: 50px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  height: auto;
 }
 
 .timeline-wrapper {
@@ -54,24 +54,29 @@ body {
   align-items: center;
   position: relative;
   gap: 0;
-  height: auto;
 }
 
 .timeline-line {
-  display: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateY(-50%);
+  z-index: 0;
 }
 
 .timeline-points {
   display: flex;
-  gap: 50px;
+  gap: 100px;
   position: relative;
   z-index: 1;
-  flex-direction: row;
 }
 
 .timeline-point {
-  width: 10px;
-  height: 10px;
+  width: 16px;
+  height: 16px;
   background: white;
   border: 2px solid rgba(0, 0, 0, 0.25);
   border-radius: 50%;
@@ -89,22 +94,22 @@ body {
 .timeline-point.active {
   background: #fa3627;
   border-color: #fa3627;
-  width: 14px;
-  height: 14px;
-  box-shadow: 0 0 0 4px rgba(250, 54, 39, 0.15);
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 0 6px rgba(250, 54, 39, 0.15);
 }
 
-/* Tooltip - Mobile First */
+/* Tooltip */
 .section-label {
   position: absolute;
-  bottom: 18px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(51, 51, 51, 0.85);
   color: white;
-  padding: 6px 10px;
+  padding: 8px 14px;
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
   opacity: 0;
@@ -114,31 +119,32 @@ body {
   z-index: 10;
 }
 
+/* Tooltip visible en hover */
 .timeline-point:hover .section-label {
   opacity: 1;
 }
 
+/* Tooltip PERMANENTE en punto activo - opacidad 0.6 */
 .timeline-point.active .section-label {
   opacity: 1;
   background: rgba(250, 54, 39, 0.6);
   color: white;
   font-weight: 700;
 }
-
 /* ============================================
-   SOL BOTÓN - MOBILE FIRST
+   SOL BOTÓN (SUPERIOR DERECHA)
    ============================================ */
 
 .sun-button {
   position: fixed;
-  top: 12px;
-  right: 12px;
+  top: 24px;
+  right: 24px;
   z-index: 300;
   background: none;
   border: none;
   cursor: pointer;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -146,19 +152,19 @@ body {
   transition: transform var(--transition);
 }
 
-/* Anillo animado - Opción 4 */
+/* Contenedor para el anillo */
 .sun-button::before {
   content: '';
   position: absolute;
-  width: 56px;
-  height: 56px;
+  width: 70px;
+  height: 70px;
   border: 2px solid rgba(250, 54, 39, 0.3);
   border-radius: 50%;
   animation: expandRing 2s ease-out infinite;
 }
 
 .sun-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(15deg);
 }
 
 .sun-button:hover::before {
@@ -196,20 +202,21 @@ body {
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+/*  animation: float 3s ease-in-out infinite;*/
 }
 
 /* ============================================
-   SUBMENÚ - MOBILE FIRST
+   SUBMENÚ
    ============================================ */
 
 .submenu {
   position: fixed;
-  top: 70px;
-  right: 12px;
+  top: 100px;
+  right: 24px;
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  min-width: 180px;
+  min-width: 220px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   transform: scale(0.95) translateY(-10px);
   opacity: 0;
@@ -246,7 +253,7 @@ body {
 }
 
 /* ============================================
-   OVERLAY - MOBILE FIRST
+   OVERLAY (PARA CERRAR MENÚ)
    ============================================ */
 
 .menu-overlay {
@@ -268,7 +275,7 @@ body {
 }
 
 /* ============================================
-   SCROLL CONTAINER - MOBILE FIRST
+   SCROLL CONTAINER (HORIZONTAL)
    ============================================ */
 
 .scroll-container {
@@ -279,6 +286,8 @@ body {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   display: flex;
+
+  /* Ocultar scrollbar */
   scrollbar-width: none;
 }
 
@@ -287,7 +296,7 @@ body {
 }
 
 /* ============================================
-   SECCIONES - MOBILE FIRST
+   SECCIONES
    ============================================ */
 
 .scroll-section {
@@ -299,7 +308,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 70px 16px 32px;
+  padding: 60px 40px;
   position: relative;
 }
 
@@ -345,38 +354,38 @@ body {
 }
 
 /* ============================================
-   TIPOGRAFÍA - MOBILE FIRST
+   TIPOGRAFÍA EN SECCIONES
    ============================================ */
 
 .scroll-section h1 {
-  font-size: 24px;
+  font-size: 48px;
   font-weight: 700;
   margin-bottom: 12px;
   line-height: 1.2;
 }
 
 .scroll-section h2 {
-  font-size: 20px;
+  font-size: 42px;
   font-weight: 700;
   margin-bottom: 12px;
   line-height: 1.2;
 }
 
 .scroll-section h3 {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
   margin-bottom: 12px;
 }
 
 .tagline {
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 300;
   opacity: 0.95;
   margin-bottom: 12px;
 }
 
 .description {
-  font-size: 14px;
+  font-size: 16px;
   max-width: 600px;
   opacity: 0.9;
   line-height: 1.6;
@@ -384,21 +393,22 @@ body {
 }
 
 .section-subtitle {
-  font-size: 14px;
+  font-size: 18px;
   opacity: 0.9;
   font-weight: 300;
   margin-bottom: 32px;
 }
 
 /* ============================================
-   IMÁGENES - MOBILE FIRST
+   IMÁGENES
    ============================================ */
 
 .section-logo {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+ /* animation: float 3s ease-in-out infinite;*/
 }
 
 @keyframes float {
@@ -407,19 +417,19 @@ body {
 }
 
 /* ============================================
-   BOTONES - MOBILE FIRST
+   BOTONES
    ============================================ */
 
 .cta-button {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 14px 32px;
   background: rgba(255, 255, 255, 0.25);
   border: 2px solid rgba(255, 255, 255, 0.5);
   color: white;
   text-decoration: none;
   border-radius: 50px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   transition: all var(--transition);
   cursor: pointer;
   backdrop-filter: blur(4px);
@@ -432,17 +442,32 @@ body {
 }
 
 /* ============================================
-   GRILLAS - MOBILE FIRST
+   GRILLAS (AGENDA, PROYECTOS, FORMACIÓN)
    ============================================ */
 
 .agenda-grid,
 .projects-grid,
 .courses-grid {
   display: grid;
-  gap: 16px;
+  gap: 24px;
   width: 100%;
-  grid-template-columns: 1fr;
+}
+
+.agenda-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   max-width: 1200px;
+  margin: 0 auto;
+}
+
+.courses-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -481,7 +506,7 @@ body {
 .project-card h3,
 .course-card h3,
 .contact-card h3 {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 12px;
   font-weight: 600;
 }
@@ -511,6 +536,7 @@ body {
   margin-bottom: 0;
 }
 
+/* Links */
 .link {
   display: inline-block;
   color: white;
@@ -527,12 +553,12 @@ body {
 }
 
 /* ============================================
-   CONTACTO Y COMUNIDAD - MOBILE FIRST
+   CONTACTO Y COMUNIDAD
    ============================================ */
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px;
   margin-bottom: 48px;
 }
@@ -554,15 +580,14 @@ body {
 
 .social-section h3 {
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .social-links {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  flex-direction: column;
 }
 
 .social-link {
@@ -574,8 +599,6 @@ body {
   border-radius: 8px;
   font-weight: 500;
   transition: all var(--transition);
-  text-align: center;
-  width: 100%;
 }
 
 .social-link:hover {
@@ -599,54 +622,12 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE - TABLET (768px+)
+   RESPONSIVE
    ============================================ */
 
-@media (min-width: 768px) {
-  .timeline-header {
-    padding: 12px 20px;
-  }
-
-  .timeline-points {
-    gap: 100px;
-  }
-
-  .timeline-point {
-    width: 16px;
-    height: 16px;
-  }
-
-  .timeline-point.active {
-    width: 20px;
-    height: 20px;
-  }
-
-  .section-label {
-    font-size: 13px;
-    padding: 8px 14px;
-    bottom: 32px;
-  }
-
-  .sun-button {
-    top: 24px;
-    right: 24px;
-    width: 60px;
-    height: 60px;
-  }
-
-  .sun-button::before {
-    width: 70px;
-    height: 70px;
-  }
-
-  .submenu {
-    top: 100px;
-    right: 24px;
-    min-width: 220px;
-  }
-
+@media (max-width: 1024px) {
   .scroll-section {
-    padding: 80px 30px 40px;
+    padding: 60px 30px;
   }
 
   .scroll-section h1 {
@@ -661,70 +642,160 @@ body {
     font-size: 20px;
   }
 
+  .agenda-grid,
+  .projects-grid,
+  .courses-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+    .timeline-header {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;              /* NUEVO - asegurar que no hay conflicto */
+    right: auto;
+    padding: 8px 12px;
+    height: auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 300;
+  }
+
+  .timeline-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: auto;
+  }
+
+  .timeline-line {
+    display: none;  /* OPCIONAL - puedes esconder la línea en móvil */
+  }
+
+  .timeline-points {
+    display: flex;
+    gap: 50px;
+    flex-direction: row;
+  }
+
+  .timeline-point {
+    width: 10px;
+    height: 10px;
+  }
+
+  .timeline-point.active {
+    width: 14px;
+    height: 14px;
+    background: #fa3627;
+    border-color: #fa3627;
+    box-shadow: 0 0 0 4px rgba(250, 54, 39, 0.15);
+  }
+
+  .section-label {
+    font-size: 10px;
+    padding: 6px 10px;
+    bottom: 18px;
+  }
+
+  .timeline-point.active .section-label {
+    opacity: 1;
+    background: rgba(250, 54, 39, 0.6);
+  }
+
+  .sun-button {
+    top: 12px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .submenu {
+    top: 70px;
+    right: 12px;
+    min-width: 180px;
+  }
+
+  .scroll-section {
+    padding: 80px 20px 40px;
+  }
+
+  .scroll-section h1 {
+    font-size: 28px;
+  }
+
+  .scroll-section h2 {
+    font-size: 24px;
+  }
+
+  .tagline {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
   .section-logo {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
   }
 
   .agenda-grid,
   .projects-grid,
   .courses-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-  }
-
-  .contact-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
-  .social-links {
-    flex-direction: row;
+    grid-template-columns: 1fr;
     gap: 16px;
   }
 
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social-links {
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .social-link {
-    width: auto;
+    text-align: center;
+    width: 100%;
   }
 }
 
-/* ============================================
-   RESPONSIVE - ESCRITORIO (1024px+)
-   ============================================ */
-
-@media (min-width: 1024px) {
+@media (max-width: 480px) {
   .scroll-section {
-    padding: 60px 40px;
+    padding: 70px 16px 32px;
   }
 
   .scroll-section h1 {
-    font-size: 48px;
-  }
-
-  .scroll-section h2 {
-    font-size: 42px;
-  }
-
-  .tagline {
     font-size: 24px;
   }
 
-  .section-logo {
-    width: 120px;
-    height: 120px;
+  .scroll-section h2 {
+    font-size: 20px;
   }
 
-  .agenda-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    max-width: 1000px;
+  .tagline {
+    font-size: 14px;
   }
 
-  .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    max-width: 1200px;
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 14px;
   }
 
-  .courses-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    max-width: 1100px;
+  .agenda-card h3,
+  .project-card h3,
+  .course-card h3 {
+    font-size: 18px;
   }
 }
