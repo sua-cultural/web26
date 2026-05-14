@@ -59,6 +59,9 @@ class SuaWebApp {
     
     // Opcional: Detectar teclas
     this.setupKeyboardHandling();
+
+    // Lo del Modal
+    this.setupModal();
   }
 
   /* ============================================
@@ -274,6 +277,49 @@ class SuaWebApp {
       (navigator.msMaxTouchPoints > 0)
     );
   }
+
+/* ============================================
+     MODAL HANDLING
+     ============================================ */
+
+  setupModal() {
+    const suaModal = document.getElementById('suaModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const goToAgendaBtn = document.getElementById('goToAgenda');
+    const openModalBtn = document.getElementById('openSuaModal');
+
+    // Abrir modal
+    if (openModalBtn) {
+      openModalBtn.addEventListener('click', () => {
+        suaModal.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Ocultar scroll horizontal
+      });
+    }
+
+    // Cerrar modal (botón X)
+    closeModalBtn.addEventListener('click', () => {
+      this.closeModal(suaModal);
+    });
+
+    // Cerrar modal (click en overlay)
+    suaModal.addEventListener('click', (e) => {
+      if (e.target === suaModal) {
+        this.closeModal(suaModal);
+      }
+    });
+
+    // Ir a Agenda y cerrar modal
+    goToAgendaBtn.addEventListener('click', () => {
+      this.closeModal(suaModal);
+      this.goToSection(1); // Index 1 = Agenda Cultural
+    });
+  }
+
+  closeModal(modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = ''; // Restaurar scroll
+  }
+
 }
 
 /* ============================================
