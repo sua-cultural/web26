@@ -34,7 +34,8 @@ body {
 
 .timeline-header {
   position: fixed;
-  top: 24px;
+  bottom: 24px;
+  top: auto;
   left: 50%;
   transform: translateX(-50%);
   z-index: 300;
@@ -68,7 +69,7 @@ body {
 
 .timeline-points {
   display: flex;
-  gap: 12px;
+  gap: 100px;
   position: relative;
   z-index: 1;
 }
@@ -86,8 +87,8 @@ body {
 }
 
 .timeline-point:hover {
-  border-color: rgba(0, 0, 0, 0.6);
-  transform: scale(1.3);
+  border-color: #fa3627;
+  transform: scale(1.15);
 }
 
 .timeline-point.active {
@@ -95,9 +96,26 @@ body {
   border-color: var(--color-text);
   width: 20px;
   height: 20px;
-  box-shadow: 0 0 0 4px rgba(51, 51, 51, 0.1);
+  box-shadow: 0 0 0 4px rgba(51, 51, 51, 0);
 }
 
+.timeline-point:hover .section-label,
+.timeline-point.active .section-label {
+  opacity: 1;
+}
+
+/* label del timeline */
+.section-label {
+    position: absolute;
+    bottom: 36px;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+    white-space:  nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
 /* ============================================
    SOL BOTÓN (SUPERIOR DERECHA)
    ============================================ */
@@ -609,7 +627,7 @@ body {
 
   .timeline-points {
     display: flex;
-    gap: 6px;
+    gap: 50px;
     flex-direction: row;
   }
 
