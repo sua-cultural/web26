@@ -199,47 +199,6 @@ body {
 }
 
 /* ============================================
-   BOTÓN HOME
-   ============================================ */
-
-.home-button {
-  position: fixed;
-  bottom: 80px;
-  right: 24px;
-  z-index: 250;
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 48px;
-  height: 48px;
-  padding: 8px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  color: #909090;
-  transition: all 0.3s ease;
-}
-
-.home-button.visible {
-  display: flex;
-}
-
-.home-button svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
-}
-
-.home-button:hover {
-  transform: scale(1.15);
-  color: #fa3627;
-}
-
-.home-button:active {
-  transform: scale(0.95);
-}
-
-/* ============================================
    SUBMENÚ - MOBILE FIRST
    ============================================ */
 
@@ -284,45 +243,6 @@ body {
 .submenu-item:hover {
   background: rgba(0, 0, 0, 0.03);
   padding-left: 24px;
-}
-
-/* Separador en menú */
-.submenu-divider {
-  height: 1px;
-  background: rgba(0, 0, 0, 0.1);
-  margin: 8px 0;
-}
-
-/* Redes sociales en menú */
-.submenu-social {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  padding: 16px 12px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  background: rgba(0, 0, 0, 0.05);
-  text-decoration: none;
-}
-
-.social-icon:hover {
-  background: rgba(0, 0, 0, 0.1);
-  transform: scale(1.15);
-}
-
-.social-icon img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
 }
 
 /* ============================================
@@ -998,49 +918,9 @@ body {
 }
 
 /* ============================================
-   FLECHA ANIMADA (SOLO EN INICIO)
+   VIDEO RESPONSIVO EN MODAL
    ============================================ */
 
-.arrow-hint {
-  position: fixed;
-  right: 24px;
-  right: 24px;
-  /*transform: translateY(-50%);*/
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  color: #ffdd4b;
-  animation: arrowBlink 1.5s ease-in-out infinite;
-}
-
-@keyframes arrowBlink {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-.section1 .arrow-hint {
-  display: flex;
-}
-
-.section2 .arrow-hint,
-.section3 .arrow-hint,
-.section4 .arrow-hint,
-.section5 .arrow-hint {
-  display: none;
-}
-.arrow-hint:hover {
-  transform: scale(1.15);
-  color: #fa3627;
-}
-
-.arrow-hint:active {
-  transform: scale(0.95);
-}
 .modal-video {
   position: relative;
   width: 100%;
@@ -1086,4 +966,50 @@ body {
   font-size: 13px;
   color: #666;
   margin: 0;
+}
+
+/* ============================================
+   BOTÓN FLECHA (SOLO EN INICIO)
+   ============================================ */
+
+.arrow-button {
+  position: absolute;
+  bottom: 80px;
+  right: 24px;
+  z-index: 250;
+  background: #ffdd4b;
+  border: none;
+  cursor: pointer;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 221, 75, 0.3);
+}
+
+.section1 .arrow-button {
+  display: flex;
+}
+
+.section2 .arrow-button,
+.section3 .arrow-button,
+.section4 .arrow-button,
+.section5 .arrow-button {
+  display: none;
+}
+
+.arrow-button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 16px rgba(255, 221, 75, 0.5);
+  background: #ffe66d;
+}
+
+.arrow-button:active {
+  transform: scale(0.95);
 }

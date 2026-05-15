@@ -56,6 +56,12 @@ class SuaWebApp {
       homeButton.addEventListener('click', () => this.goToSection(0));
     }
     
+    // Event listeners - Botón Flecha
+    const arrowButton = document.getElementById('arrowButton');
+    if (arrowButton) {
+      arrowButton.addEventListener('click', () => this.goToSection(1));
+    }
+    
     // Event listeners - Input
     if (this.isMobile || this.isTouch) {
       this.setupTouchHandling();
@@ -63,10 +69,10 @@ class SuaWebApp {
       this.setupMouseWheelHandling();
     }
 
-    // Modales
+    // Modales - NUEVO
     this.setupModals();
     
-    // Teclado
+    // Opcional: Detectar teclas
     this.setupKeyboardHandling();
   }
 
@@ -97,16 +103,6 @@ class SuaWebApp {
     this.timelinePoints.forEach((point, idx) => {
       point.classList.toggle('active', idx === activeIndex);
     });
-    
-    // Mostrar/ocultar botón Home (visible en secciones 2-5, oculto en 1)
-    const homeButton = document.getElementById('homeButton');
-    if (homeButton) {
-      if (activeIndex === 0) {
-        homeButton.classList.remove('visible');
-      } else {
-        homeButton.classList.add('visible');
-      }
-    }
   }
 
   snapToSection() {
