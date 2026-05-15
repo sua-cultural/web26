@@ -1002,15 +1002,15 @@ body {
    ============================================ */
 
 .arrow-hint {
-  position: absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: fixed;
+  right: 24px;
+  right: 24px;
+  /*transform: translateY(-50%);*/
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
-  color: rgba(0, 0, 0, 0.3);
+  color: #ffdd4b;
   animation: arrowBlink 1.5s ease-in-out infinite;
 }
 
@@ -1033,7 +1033,14 @@ body {
 .section5 .arrow-hint {
   display: none;
 }
+.arrow-hint:hover {
+  transform: scale(1.15);
+  color: #fa3627;
+}
 
+.arrow-hint:active {
+  transform: scale(0.95);
+}
 .modal-video {
   position: relative;
   width: 100%;

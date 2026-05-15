@@ -63,13 +63,6 @@ class SuaWebApp {
       this.setupMouseWheelHandling();
     }
 
-    // Event listeners - Arrow
-    const arrowButton = document.getElementById('arrowButton');
-    if (arrowButton) {
-      arrowButton.addEventListener('click', () => this.goToSection(1));
-    }
-    
-
     // Modales
     this.setupModals();
     
