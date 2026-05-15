@@ -56,64 +56,10 @@
     <br>
     <a class="submenu-item" href="http://instagram.com/suaclubartes" target="_blank">@suaclubartes</a>
   </div>
+  </div>
 
   <!-- Overlay para cerrar menú -->
   <div class="menu-overlay" id="menuOverlay"></div>
-
-  <!-- ============================================
-       MODALES INLINE (¿QUÉ ES SUA? SOLAMENTE)
-       ============================================ -->
-
-  <!-- Modal: ¿Qué es Sua? (INLINE) -->
-  <div class="modal" id="suaModal">
-    <div class="modal-content">
-      <button class="modal-close">&times;</button>
-
-      <div class="modal-inner">
-        <h2>¿Sua?</h2>
-        <img src="assets/images/sol-icon100.png" alt="Sua" class="modal-image">
-
-        <!-- Video YouTube -->
-        <div class="modal-video">
-          <iframe 
-            width="100%" 
-            height="315" 
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-            title="Sua Cultural" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-          </iframe>
-        </div>
-
-        <p class="modal-text">
-          SUA es SOL<br>
-          Nuestra raíz energética es el Sol, la fuente de luz y vida de nuestra existencia.<br>
-          En Santander, Colombia nuestros ancestros lo sabían y lo honraban como deidad.<br>
-          Ellos le llamaban SUA (en lengua Muisca/Guane también Sué, Xué, Sua, Zuhe o Suhé)<br><br>
-
-          Hoy Sua representa a una comunidad cultural que cree en el poder luminoso de las artes para inspirar las
-          almas, elevar la conciencia y transformar positivamente la vida.<br>
-          Nuestra ubicación inicial es El Socorro, Santander sin embargo también tenemos procesos en San Gil, Suaita, y
-          otros municipios.
-        </p>
-
-        <p class="modal-text">
-          También hemos tomado forma de entidad sin ánimo de lucro con el nombre "Sua Corporación Cultural", personería
-          jurídica que nos ha permitido trabajar con instituciones nacionales y regionales para realizar proyectos de
-          creación y formación en diversas artes.<br>
-          Sus gestores culturales fundadores además son cinéfilos de vocación que coordinan el Sua Cineclub (Socorro) y colaboran en Chibaná Cineclub (San Gil)
-        </p>
-        <p class="modal-text">Te invitamos a compartir con nosotros conoce nuestro próximos eventos</p>
-        <button class="cta-button modal-cta" data-modal-close-go="1">
-          Agenda Cultural →
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contenedor para modales externos (FETCH) -->
-  <div id="externalModalContainer"></div>
 
   <!-- Scroll container con las 5 secciones -->
   <div class="scroll-container" id="scrollContainer">
@@ -128,10 +74,8 @@
           <p class="description">Creación y formación artística para transformar comunidades, generar pensamiento
             crítico y sembrar nuevas realidades.</p>
 
-          <!-- CTAs: ¿Qué es Sua? (inline) + Sala Solar y Chibaná (fetch) -->
-          <button class="cta-button" data-modal="suaModal">¿Qué es Sua?</button>
-          <button class="cta-button" data-modal-external="modals/sala-solar.html">Sala Solar</button>
-          <button class="cta-button" data-modal-external="modals/chibana.html">Chibaná Cineclub</button>
+          <!-- Nuevo CTA que abre modal -->
+          <button id="openSuaModal" class="cta-button">¿Qué es Sua?</button>
 
           <a href="#creacion" class="cta-button">Conoce Nuestros Proyectos</a>
           <a href="#comunidad" class="cta-button">Bienvenido a la comunidad</a>
@@ -141,6 +85,7 @@
 
     <!-- Sección 2: Agenda Cultural (Sala Solar + Cineclubes) -->
     <section class="scroll-section section2" id="agenda">
+      <button id="openSalaModal" class="cta-button">Sala Solar</button>
       <!--<div class="section-content">
         <div class="section-inner">
           <h2>Agenda Cultural</h2>
@@ -239,7 +184,7 @@
 
     <!-- Sección 4: Formación -->
     <section class="scroll-section section4" id="formacion">
-    <!--  <div class="section-content">
+      <!--  <div class="section-content">
         <div class="section-inner">
           <h2>Formación Artística</h2>
           <p class="section-subtitle">Laboratorios y Encuentros de Aprendizaje</p>
@@ -330,6 +275,96 @@
 
   <!-- Scripts -->
   <script src="js/app.js"></script>
+
+  <!-- Modal -->
+  <div class="modal" id="suaModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+
+      <div class="modal-inner">
+        <h2>¿Sua?</h2>
+        <img src="assets/images/sol-icon100.png" alt="Sua" class="modal-image">
+
+        <p class="modal-text">
+          SUA es SOL<br>
+          Nuestra raíz energética es el Sol, la fuente de luz y vida de nuestra existencia.<br>
+          En Santander, Colombia nuestros ancestros lo sabían y lo honraban como deidad.<br>
+          Ellos le llamaban SUA (en lengua Muisca/Guane también Sué, Xué, Sua, Zuhe o Suhé)<br><br>
+
+          Hoy Sua representa a una comunidad cultural que cree en el poder luminoso de las artes para inspirar las
+          almas, elevar la conciencia y transformar positivamente la vida.<br>
+          Nuestra ubicación inicial es El Socorro, Santander sin embargo también tenemos procesos en San Gil, Suaita, y
+          otros municipios.
+        </p>
+
+        <p class="modal-text">
+          También hemos tomado forma de entidad sin ánimo de lucro con el nombre "Sua Corporación Cultural", personería
+          jurídica que nos ha permitido trabajar con instituciones nacionales y regionales para realizar proyectos de
+          creación y formación en diversas artes.<br>
+          Sus gestores culturales fundadores además son cinéfilos de vocación que coordinan el Sua Cineclub (Socorro) y colaboran en Chibaná Cineclub (San Gil)
+        </p>
+        <p class="modal-text">Te invitamos a compartir con nosotros conoce nuestro próximos eventos</p>
+        <button class="cta-button modal-cta" id="goToAgenda">
+          Agenda Cultural →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  // modal Sala Solar
+
+  <div class="modal" id="solarModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+
+      <div class="modal-inner">
+        <img src="assets/images/sol-icon200.png" alt="Sua" class="modal-image">
+
+        <h2>SALA SOLAR</h2>
+
+        <p class="modal-text">
+          Espacio dinámico del Centro Cultural Popular "Luis Martín Vesga Nossa" donde Sua realiza sus actividades principales en El Socorro.
+        </p>
+
+        <p class="modal-text">
+          La Sala Solar se adapta a diferentes eventos. En momentos es una dala de Cine, en otros es un salón de clases o conferencias y también es un taller de creación y formación en diferentes técnicas artísticas y también es su oficina y lugar de encuentro laboral.
+        </p>
+
+        <button class="cta-button modal-cta" id="goToAgenda">
+          Agenda Cultural →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  //modal chibaná
+  <div class="modal" id="chibanaModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+
+      <div class="modal-inner">
+        <img src="assets/images/sol-icon200.png" alt="Sua" class="modal-image">
+
+        <h2>¿Qué es Sua?</h2>
+
+        <p class="modal-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+        </p>
+
+        <p class="modal-text">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+
+        <button class="cta-button modal-cta" id="goToAgenda">
+          Agenda Cultural →
+        </button>
+      </div>
+    </div>
+  </div>
+
 
 </body>
 
