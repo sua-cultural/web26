@@ -50,18 +50,31 @@ class SuaWebApp {
       point.addEventListener('click', (e) => this.handleTimelineClick(e));
     });
     
+    // Event listeners - Botón Home
+    const homeButton = document.getElementById('homeButton');
+    if (homeButton) {
+      homeButton.addEventListener('click', () => this.goToSection(0));
+    }
+    
     // Event listeners - Input
     if (this.isMobile || this.isTouch) {
       this.setupTouchHandling();
     } else {
       this.setupMouseWheelHandling();
     }
-    
-    // Opcional: Detectar teclas
-    this.setupKeyboardHandling();
 
-    // Lo del Modal
-    this.setupModal();
+    // Event listeners - Arrow
+    const arrowButton = document.getElementById('arrowButton');
+    if (arrowButton) {
+      arrowButton.addEventListener('click', () => this.goToSection(1));
+    }
+    
+
+    // Modales
+    this.setupModals();
+    
+    // Teclado
+    this.setupKeyboardHandling();
   }
 
   /* ============================================
@@ -91,6 +104,16 @@ class SuaWebApp {
     this.timelinePoints.forEach((point, idx) => {
       point.classList.toggle('active', idx === activeIndex);
     });
+    
+    // Mostrar/ocultar botón Home (visible en secciones 2-5, oculto en 1)
+    const homeButton = document.getElementById('homeButton');
+    if (homeButton) {
+      if (activeIndex === 0) {
+        homeButton.classList.remove('visible');
+      } else {
+        homeButton.classList.add('visible');
+      }
+    }
   }
 
   snapToSection() {
@@ -132,6 +155,96 @@ class SuaWebApp {
     this.submenu.classList.remove('open');
     this.menuOverlay.classList.remove('open');
     document.body.style.overflow = '';
+  }
+
+  /* ============================================
+     MODALES - GENÉRICO PARA TODOS
+     ============================================ */
+
+  setupModals() {
+    // 1. Botones que abren modales inline (con data-modal)
+    document.querySelectorAll('[data-modal]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modalId = btn.dataset.modal;
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          this.openModal(modal);
+        }
+      });
+    });
+
+    // 2. Botones que abren modales externos (con data-modal-external)
+    document.querySelectorAll('[data-modal-external]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const htmlFile = btn.dataset.modalExternal;
+        this.loadExternalModal(htmlFile);
+      });
+    });
+
+    // 3. Todos los botones .modal-close cierran su modal
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-close')) {
+        const modal = e.target.closest('.modal');
+        if (modal) {
+          this.closeModalElement(modal);
+        }
+      }
+    });
+
+    // 4. Click fuera del modal (en el fondo gris) cierra
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal') && e.target === e.currentTarget) {
+        this.closeModalElement(e.target);
+      }
+    });
+
+    // 5. Botones que cierran modal y navegan (data-modal-close-go)
+    document.addEventListener('click', (e) => {
+      if (e.target.hasAttribute('data-modal-close-go')) {
+        const sectionIndex = parseInt(e.target.dataset.modalCloseGo);
+        const modal = e.target.closest('.modal');
+        if (modal) {
+          this.closeModalElement(modal);
+          setTimeout(() => this.goToSection(sectionIndex), 300);
+        }
+      }
+    });
+  }
+
+  openModal(modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModalElement(modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  loadExternalModal(htmlFile) {
+    fetch(htmlFile)
+      .then(response => {
+        if (!response.ok) throw new Error('No se pudo cargar el modal');
+        return response.text();
+      })
+      .then(html => {
+        // Crear contenedor temporal si no existe
+        let container = document.getElementById('externalModalContainer');
+        if (!container) {
+          container = document.createElement('div');
+          container.id = 'externalModalContainer';
+          document.body.appendChild(container);
+        }
+        
+        container.innerHTML = html;
+        const modal = container.querySelector('.modal');
+        if (modal) {
+          this.openModal(modal);
+          // Re-setup event listeners para el nuevo modal
+          this.setupModals();
+        }
+      })
+      .catch(error => console.error('Error cargando modal externo:', error));
   }
 
   /* ============================================
@@ -277,49 +390,6 @@ class SuaWebApp {
       (navigator.msMaxTouchPoints > 0)
     );
   }
-
-/* ============================================
-     MODAL HANDLING
-     ============================================ */
-
-  setupModal() {
-    const suaModal = document.getElementById('suaModal');
-    const closeModalBtn = document.getElementById('closeModal');
-    const goToAgendaBtn = document.getElementById('goToAgenda');
-    const openModalBtn = document.getElementById('openSuaModal');
-
-    // Abrir modal
-    if (openModalBtn) {
-      openModalBtn.addEventListener('click', () => {
-        suaModal.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Ocultar scroll horizontal
-      });
-    }
-
-    // Cerrar modal (botón X)
-    closeModalBtn.addEventListener('click', () => {
-      this.closeModal(suaModal);
-    });
-
-    // Cerrar modal (click en overlay)
-    suaModal.addEventListener('click', (e) => {
-      if (e.target === suaModal) {
-        this.closeModal(suaModal);
-      }
-    });
-
-    // Ir a Agenda y cerrar modal
-    goToAgendaBtn.addEventListener('click', () => {
-      this.closeModal(suaModal);
-      this.goToSection(1); // Index 1 = Agenda Cultural
-    });
-  }
-
-  closeModal(modal) {
-    modal.classList.remove('open');
-    document.body.style.overflow = ''; // Restaurar scroll
-  }
-
 }
 
 /* ============================================
