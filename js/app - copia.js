@@ -205,15 +205,10 @@ class SuaWebApp {
     });
 
     // 4. Click fuera del modal (en el fondo gris) cierra
-    // Usar event delegation en todos los modals
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.addEventListener('click', (e) => {
-        // Solo cierra si el click fue directamente en el .modal (el fondo)
-        // y NO en .modal-content o sus hijos
-        if (e.target === modal) {
-          this.closeModalElement(modal);
-        }
-      });
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal') && e.target === e.currentTarget) {
+        this.closeModalElement(e.target);
+      }
     });
 
     // 5. Botones que cierran modal y navegan (data-modal-close-go)

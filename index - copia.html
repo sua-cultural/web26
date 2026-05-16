@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sua Corporación Cultural - Creación y formación artística para iluminar vidas">
+  <meta property="og:title" content="Sua Corporación Cultural">
+  <meta property="og:description"
+    content="Creación y formación artística para iluminar vidas. Transformando comunidades a través del arte.">
+  <meta property="og:image" content="https://sua-cultural.github.io/img/ogimgsua.jpg">
+  <meta property="og:url" content="https://sua-cultural.github.io">
+  <title>Sua Cultural - Iluminando vidas a través del arte</title>
+  <link rel="icon" type="image/png" href="assets/images/sol-icon32.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Timeline flotante en la parte inferior -->
+  <div class="timeline-header">
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+      <div class="timeline-points">
+        <div class="timeline-point active" data-index="0" title="Inicio + Sua">
+          <span class="section-label">Sua</span>
+        </div>
+        <div class="timeline-point" data-index="1" title="Agenda Cultural">
+          <span class="section-label">Agenda<br>Cultural</span>
+        </div>
+        <div class="timeline-point" data-index="2" title="Creación">
+          <span class="section-label">Creación</span>
+        </div>
+        <div class="timeline-point" data-index="3" title="Formación">
+          <span class="section-label">Formación</span>
+        </div>
+        <div class="timeline-point" data-index="4" title="Comunidad">
+          <span class="section-label">Comunidad</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sol botón (superior derecho) -->
+  <button class="sun-button" id="sunButton" aria-label="Menú">
+    <img src="assets/images/sol-icon100.png" alt="Menú Sua" class="sun-icon">
+  </button>
+
+  <!-- Submenú -->
+  <div class="submenu" id="submenu">
+    <a class="submenu-item" href="#inicio">Inicio</a>
+    <a class="submenu-item" href="#agenda">Agenda Cultural</a>
+    <a class="submenu-item" href="#creacion">Creación</a>
+    <a class="submenu-item" href="#formacion">Formación</a>
+    <a class="submenu-item" href="#comunidad">Comunidad</a>
+    
+    <!-- Separador -->
+    <div class="submenu-divider"></div>
+    
+    <!-- Redes Sociales con Iconos -->
+    <div class="submenu-social">
+      <a href="https://facebook.com/suaclubartes" target="_blank" class="social-icon" title="Facebook">
+        <img src="assets/images/facebook-logo.png" alt="Facebook">
+      </a>
+      <a href="https://instagram.com/suaclubartes" target="_blank" class="social-icon" title="Instagram">
+        <img src="assets/images/instagram-logo.png" alt="Instagram">
+      </a>
+      <a href="https://youtube.com/@suacultural" target="_blank" class="social-icon" title="YouTube">
+        <img src="assets/images/youtube-logo.png" alt="YouTube">
+      </a>
+      <a href="https://wa.me/573008643242" target="_blank" class="social-icon" title="WhatsApp">
+        <img src="assets/images/whatsapp-logo.png" alt="WhatsApp">
+      </a>
+    </div>
+  </div>
+
+  <!-- Overlay para cerrar menú -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- Botón Home (visible en secciones 2-5) -->
+  <button class="home-button" id="homeButton" title="Ir al Inicio" aria-label="Ir al Inicio">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+  </button>
+
+  <!-- ============================================
+       MODALES INLINE (¿QUÉ ES SUA? SOLAMENTE)
+       ============================================ -->
+
+  <!-- Modal: ¿Qué es Sua? (INLINE) -->
+  <div class="modal" id="suaModal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+
+      <div class="modal-inner">
+        <h2>¿Sua?</h2>
+        <img src="assets/images/sol-icon100.png" alt="Sua" class="modal-image">
+
+        <!-- Video YouTube -->
+        <div class="modal-video">
+          <iframe 
+            width="100%" 
+            height="315" 
+            src="https://www.youtube.com/embed/WEj8UlMgVCo" 
+            title="Sua Cultural" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <p class="modal-text">
+          SUA es SOL<br>
+          Nuestra raíz energética es el Sol, la fuente de luz y vida de nuestra existencia.<br>
+          En Santander, Colombia nuestros ancestros lo sabían y lo honraban como deidad.<br>
+          Ellos le llamaban SUA (en lengua Muisca/Guane también Sué, Xué, Sua, Zuhe o Suhé)<br><br>
+
+          Hoy Sua representa a una comunidad cultural que cree en el poder luminoso de las artes para inspirar las
+          almas, elevar la conciencia y transformar positivamente la vida.<br>
+          Nuestra ubicación inicial es El Socorro, Santander sin embargo también tenemos procesos en San Gil, Suaita, y
+          otros municipios.
+        </p>
+
+        <p class="modal-text">
+          También hemos tomado forma de entidad sin ánimo de lucro con el nombre "Sua Corporación Cultural", personería
+          jurídica que nos ha permitido trabajar con instituciones nacionales y regionales para realizar proyectos de
+          creación y formación en diversas artes.<br>
+          Sus gestores culturales fundadores además son cinéfilos de vocación que coordinan el Sua Cineclub (Socorro) y colaboran en Chibaná Cineclub (San Gil)
+        </p>
+        <p class="modal-text">Te invitamos a compartir con nosotros conoce nuestro próximos eventos</p>
+        <button class="cta-button modal-cta" data-modal-close-go="1">
+          Agenda Cultural →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor para modales externos (FETCH) -->
+  <div id="externalModalContainer"></div>
+
+  <!-- Scroll container con las 5 secciones -->
+  <div class="scroll-container" id="scrollContainer">
+
+    <!-- Sección 1: Inicio + Sobre Sua -->
+    <section class="scroll-section section1" id="inicio">
+      <div class="section-content">
+        <div class="section-inner">
+          <img src="assets/images/sol-icon200.png" alt="Logo Sua" class="section-logo">
+          <h1>Sua Cultural</h1>
+          <p class="tagline">Iluminando vidas a través del arte</p>
+          <p class="description">Creación y formación artística para transformar comunidades, generar pensamiento
+            crítico y sembrar nuevas realidades.</p>
+
+          <!-- CTAs: ¿Qué es Sua? (inline) + Sala Solar y Chibaná (fetch) -->
+          <button class="cta-button" data-modal="suaModal">¿Qué es Sua?</button>
+          <a href="#creacion" class="cta-button">Conoce Nuestros Proyectos</a>
+          <a href="#comunidad" class="cta-button">Sua Comunidad</a>
+        </div>
+        
+        <!-- Flecha animada (solo en Inicio) -->
+        <button class="arrow-hint" id="arrowButton" title="Explorar" aria-label="Explorar">
+          <span class="arrow">➤</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sección 2: Agenda Cultural (Sala Solar + Cineclubes) -->
+    <section class="scroll-section section2" id="agenda">
+      <!--<div class="section-content">
+        <div class="section-inner">
+          <h2>Agenda Cultural</h2>
+                    <button class="cta-button" data-modal-external="modals/sala-solar.html">Sala Solar</button>
+          <button class="cta-button" data-modal-external="modals/chibana.html">Chibaná Cineclub</button>
+
+        </div>
+      </div>-->
+    </section>
+
+    <!-- Sección 3: Creación (Proyectos) -->
+    <section class="scroll-section section3" id="creacion">
+      <!--<div class="section-content">
+        <div class="section-inner">
+          <h2>Creación</h2>
+          <p class="section-subtitle">Nuestros Proyectos Artísticos</p>
+
+          <div class="projects-grid">
+            <div class="project-card">
+              <img src="assets/images/siembra-poetica.jpg" alt="Siembra Poética">
+              <h3>Siembra Poética</h3>
+              <p>Laboratorio de creación artística que investiga la poesía como herramienta de transformación.</p>
+              <a href="https://suacultural.github.io/siembra-poetica.html" class="link">Ver más →</a>
+            </div>
+
+            <div class="project-card">
+              <img src="assets/images/cine-conciencia.jpg" alt="Cine Conciencia">
+              <h3>Cine Conciencia</h3>
+              <p>Proyecto de producción audiovisual. Facilitamos cortometrajes donde la comunidad cuenta historias.</p>
+              <a href="https://suacultural.github.io/cine-conciencia.html" class="link">Ver más →</a>
+            </div>
+
+            <div class="project-card">
+              <img src="assets/images/comun-experimento.jpg" alt="Común Experimento">
+              <h3>Común Experimento</h3>
+              <p>Espacio de experimentación corporal y danza. Laboratorio abierto para crear desde el cuerpo.</p>
+              <a href="https://suacultural.github.io/comun-experimento.html" class="link">Ver más →</a>
+            </div>
+
+            <div class="project-card">
+              <img src="assets/images/resiste-como-mujer.jpg" alt="Resiste como Mujer">
+              <h3>Resiste como Mujer</h3>
+              <p>Laboratorio femenino dedicado a fortalecer voces de mujeres a través del arte.</p>
+              <a href="https://suacultural.github.io/resiste-como-mujer.html" class="link">Ver más →</a>
+            </div>
+
+            <div class="project-card">
+              <img src="assets/images/el-poder-del-campo.jpg" alt="El Poder del Campo">
+              <h3>El Poder del Campo</h3>
+              <p>Proyecto dedicado a visibilizar y celebrar la sabiduría y resistencia del trabajo rural.</p>
+              <a href="https://suacultural.github.io/el-poder-del-campo.html" class="link">Ver más →</a>
+            </div>
+
+            <div class="project-card">
+              <img src="assets/images/Reflejo-web.jpg" alt="Producción Audiovisual">
+              <h3>Producción Audiovisual</h3>
+              <p>Colección de cortometrajes que exploran historias de transformación, conflicto y resiliencia.</p>
+              <a href="https://suacultural.github.io/produccion-audiovisual.html" class="link">Ver más →</a>
+            </div>
+          </div>
+        </div>
+      </div>-->
+    </section>
+
+    <!-- Sección 4: Formación -->
+    <section class="scroll-section section4" id="formacion">
+    <!--  <div class="section-content">
+        <div class="section-inner">
+          <h2>Formación Artística</h2>
+          <p class="section-subtitle">Laboratorios y Encuentros de Aprendizaje</p>
+
+          <div class="courses-grid">
+            <div class="course-card">
+              <img src="assets/images/siembra-poetica.jpg" alt="Siembra Poética 1">
+              <h3>Siembra Poética 1</h3>
+              <p>Primer ciclo de laboratorios de creación poética donde la comunidad investiga y experimenta.</p>
+              <a href="https://suacultural.github.io/siembra-poetica.html" class="link">Explorar →</a>
+            </div>
+
+            <div class="course-card">
+              <img src="assets/images/siembra-poetica-2.jpg" alt="Siembra Poética 2">
+              <h3>Siembra Poética 2</h3>
+              <p>Segundo ciclo dedicado a la "Paz con la Naturaleza". Exploración entre escritura y naturaleza.</p>
+              <a href="https://suacultural.github.io/siembra-poetica-2.html" class="link">Explorar →</a>
+            </div>
+
+            <div class="course-card">
+              <img src="assets/images/el-poder-del-campo.jpg" alt="El Poder del Campo">
+              <h3>El Poder del Campo</h3>
+              <p>Laboratorios de documental, fotografía y video 360° en territorios rurales.</p>
+              <a href="https://suacultural.github.io/el-poder-del-campo.html" class="link">Explorar →</a>
+            </div>
+
+            <div class="course-card">
+              <img src="assets/images/cine-conciencia.jpg" alt="Cine Conciencia">
+              <h3>Cine Conciencia</h3>
+              <p>Taller audiovisual donde aprendemos a contar historias que generan conciencia colectiva.</p>
+              <a href="https://suacultural.github.io/cine-conciencia.html" class="link">Explorar →</a>
+            </div>
+
+            <div class="course-card">
+              <img src="assets/images/microtaller.jpg" alt="Microtaller">
+              <h3>Microtaller</h3>
+              <p>Encuentros intensivos de exploración artística. Espacios breves pero profundos para experimentar.</p>
+              <a href="https://www.youtube.com/@suacultural" class="link">Ver en YouTube →</a>
+            </div>
+          </div>
+        </div>
+      </div>-->
+    </section>
+
+    <!-- Sección 5: Comunidad (Contacto) -->
+    <section class="scroll-section section5" id="comunidad">
+      <!-- <div class="section-content">
+        <div class="section-inner">
+          <h2>Comunidad</h2>
+          <p class="section-subtitle">Contacta con Nosotros</p>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>📧 Email</h3>
+              <p><a href="mailto:suaclubartes@gmail.com">suaclubartes@gmail.com</a></p>
+            </div>
+
+            <div class="contact-card">
+              <h3>📱 WhatsApp</h3>
+              <p><a href="https://wa.me/573008643242" target="_blank">+57 300 8643242</a></p>
+            </div>
+
+            <div class="contact-card">
+              <h3>📍 Ubicación</h3>
+              <p>El Socorro & San Gil<br>Santander, Colombia</p>
+            </div>
+          </div>
+
+          <div class="social-section">
+            <h3>Síguenos en Redes</h3>
+            <div class="social-links">
+              <a href="https://facebook.com/suaclubartes" target="_blank" class="social-link">Facebook</a>
+              <a href="https://instagram.com/suaclubartes" target="_blank" class="social-link">Instagram</a>
+              <a href="https://youtube.com/@suacultural" target="_blank" class="social-link">YouTube</a>
+            </div>
+          </div>
+
+          <div class="cta-section">
+            <h3>¿Quieres Colaborar?</h3>
+            <p>Nos encantaría escucharte y explorar formas de trabajar juntos.</p>
+            <a href="https://wa.me/573008643242" class="cta-button">Envía un Mensaje</a>
+          </div>
+        </div>
+      </div>-->
+    </section>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
